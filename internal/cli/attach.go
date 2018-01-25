@@ -12,27 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package cli
 
 import (
-	"os"
+	"path/filepath"
 
-	"github.com/coreos/coreos-cryptagent/internal/cli"
-	"github.com/sirupsen/logrus"
+	"github.com/pkg/errors"
+	"github.com/spf13/cobra"
 )
 
-func main() {
-	logrus.SetLevel(logrus.InfoLevel)
+var (
+	attachCmd = &cobra.Command{
+		Use:          "attach",
+		RunE:         runAttachCmd,
+		Short:        "Attach a crypsetup volume by device path",
+		SilenceUsage: true,
+	}
+)
 
-	if err := cli.Setup(); err != nil {
-		logrus.Errorln(err)
-		os.Exit(2)
+func runAttachCmd(cmd *cobra.Command, args []string) error {
+	if len(args) == 0 {
+		return errors.New("device path missing")
+	}
+	if len(args) != 1 {
+		return errors.New("too many arguments")
+	}
+	pathIn := args[0]
+
+	if !filepath.IsAbs(pathIn) {
+		return errors.Errorf("input path %s is not absolute", pathIn)
 	}
 
-	if err := cli.Execute(); err != nil {
-		logrus.Errorln(err)
-		os.Exit(1)
-	}
+	//TODO(lucab): volume attachment logic
 
-	os.Exit(0)
+	return nil
 }
