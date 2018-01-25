@@ -12,27 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package cli
 
 import (
-	"os"
-
-	"github.com/coreos/coreos-cryptagent/internal/cli"
+	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 )
 
-func main() {
-	logrus.SetLevel(logrus.InfoLevel)
-
-	if err := cli.Setup(); err != nil {
-		logrus.Errorln(err)
-		os.Exit(2)
+var (
+	serverCmd = &cobra.Command{
+		Use:          "server",
+		RunE:         runServerCmd,
+		Short:        "Runs the password agent server",
+		SilenceUsage: true,
 	}
+)
 
-	if err := cli.Execute(); err != nil {
-		logrus.Errorln(err)
-		os.Exit(1)
+func runServerCmd(cmd *cobra.Command, args []string) error {
+	if len(args) != 0 {
+		return errors.New("too many arguments")
 	}
+	logrus.Infoln("starting coreos-cryptagent server")
 
-	os.Exit(0)
+	//TODO(lucab): agent server logic
+	for {
+	}
 }

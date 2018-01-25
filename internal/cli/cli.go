@@ -12,27 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package cli
 
 import (
-	"os"
-
-	"github.com/coreos/coreos-cryptagent/internal/cli"
-	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 )
 
-func main() {
-	logrus.SetLevel(logrus.InfoLevel)
+var cmdAgent = &cobra.Command{
+	Use:           "coreos-cryptagent [command]",
+	SilenceErrors: true,
+}
 
-	if err := cli.Setup(); err != nil {
-		logrus.Errorln(err)
-		os.Exit(2)
-	}
+// Setup initializes cryptagent CLI infra
+func Setup() error {
+	cmdAgent.AddCommand(attachCmd)
+	cmdAgent.AddCommand(serverCmd)
+	return nil
+}
 
-	if err := cli.Execute(); err != nil {
-		logrus.Errorln(err)
-		os.Exit(1)
-	}
-
-	os.Exit(0)
+// Execute is the main entrypoint for cryptagent CLI
+func Execute() error {
+	return cmdAgent.Execute()
 }
