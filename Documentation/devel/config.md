@@ -1,6 +1,6 @@
 # Configuration
 
-This projects defines a stable configuration interchange format in order for Ignition (or other provisioning systems) to persist LUKS volume parameters and for Cryptagent to retrieve them on reboots.
+This project defines a stable configuration format in order for Ignition (or other provisioning systems) to persist LUKS volume parameters and for Cryptagent to retrieve them on reboots.
 
 Configuration files are JSON-based and strictly type-versioned, in order to ensure compatibility across versions and to ease manual inspection.
 
@@ -19,3 +19,7 @@ In particular, each encrypted device will get a configuration directory at `/boo
 # Schemas
 
 TODO(lucab): add JSON schema for all public `pkg/config` structs.
+
+# Library usage
+
+Go programs can directly manipulate Cryptagent configuration via public types exposed by the `pkg/config` package in this repository.
