@@ -1,6 +1,10 @@
-hash: 6062ae4e6dd14d8a9a3f90797c1de8c934cce870802fbd3488d1a80bd31f3b7b
-updated: 2018-01-30T14:45:30.709274732Z
+hash: bd80c13796499176b3047d438704a3a7728ad5f582767f7b70f380ec930b9e7d
+updated: 2018-02-06T12:00:40.398100161Z
 imports:
+- name: github.com/coreos/go-systemd
+  version: 40e2722dffead74698ca12a750f64ef313ddce05
+  subpackages:
+  - unit
 - name: github.com/inconshreveable/mousetrap
   version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
 - name: github.com/pkg/errors
@@ -16,7 +20,7 @@ imports:
   subpackages:
   - ssh/terminal
 - name: golang.org/x/sys
-  version: 3dbebcf8efb6a5011a60c2b4591c1022a759af8a
+  version: 37707fdb30a5b38865cfb95e5aab41707daec7fd
   subpackages:
   - unix
   - windows
