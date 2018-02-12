@@ -1,10 +1,19 @@
-hash: bd80c13796499176b3047d438704a3a7728ad5f582767f7b70f380ec930b9e7d
-updated: 2018-02-06T12:00:40.398100161Z
+hash: 4fd7dce60ff7b1d2481ac6fb2d4c78dd0cc97c52a3bfb3a1632fb60470ceb504
+updated: 2018-02-12T09:09:15.813702833Z
 imports:
+- name: github.com/coreos/go-semver
+  version: 294930c1e79c64e7dbe360054274fdad492c8cf5
+  subpackages:
+  - semver
 - name: github.com/coreos/go-systemd
   version: 40e2722dffead74698ca12a750f64ef313ddce05
   subpackages:
   - unit
+- name: github.com/coreos/ignition
+  version: 65f3f407178537b32d6075d042dea3a8fa9be501
+  subpackages:
+  - config/types
+  - config/validate/report
 - name: github.com/inconshreveable/mousetrap
   version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
 - name: github.com/pkg/errors
@@ -14,9 +23,11 @@ imports:
 - name: github.com/spf13/cobra
   version: 16c014f1a19d865b765b420e74508f80eb831ada
 - name: github.com/spf13/pflag
-  version: 4c012f6dcd9546820e378d0bdda4d8fc772cdfea
+  version: 6a877ebacf28c5fc79846f4fcd380a5d9872b997
+- name: github.com/vincent-petithory/dataurl
+  version: 9a301d65acbb728fcc3ace14f45f511a4cfeea9c
 - name: golang.org/x/crypto
-  version: 1875d0a70c90e57f11972aefd42276df65e895b9
+  version: 9de5f2eaf759b4c4550b3db39fed2e9e5f86f45c
   subpackages:
   - ssh/terminal
 - name: golang.org/x/sys
