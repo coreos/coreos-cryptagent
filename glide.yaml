@@ -12,3 +12,7 @@ import:
   version: v1.0.3
 - package: github.com/spf13/cobra
   version: 16c014f1a19d865b765b420e74508f80eb831ada
+- package: github.com/coreos/ignition
+  version: v0.22.0
+  subpackages:
+  - config/types
