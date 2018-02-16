@@ -1,6 +1,7 @@
+sudo: required
 language: go
 go:
   - 1.9.x
 script:
   - go build
-  - go test ./...
+  - go test -v ./...

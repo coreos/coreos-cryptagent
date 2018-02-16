@@ -15,11 +15,16 @@
 package cli
 
 import (
+	"os/exec"
 	"path/filepath"
 
+	"github.com/coreos/coreos-cryptagent/internal/common"
 	"github.com/pkg/errors"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
+
+const sdHelperBin = "/lib/systemd/systemd-cryptsetup"
 
 var (
 	attachCmd = &cobra.Command{
@@ -31,6 +36,7 @@ var (
 )
 
 func runAttachCmd(cmd *cobra.Command, args []string) error {
+	var err error
 	if len(args) == 0 {
 		return errors.New("device path missing")
 	}
@@ -43,7 +49,42 @@ func runAttachCmd(cmd *cobra.Command, args []string) error {
 		return errors.Errorf("input path %s is not absolute", pathIn)
 	}
 
-	//TODO(lucab): volume attachment logic
+	blockPath, err := common.LookupBlockdev(pathIn)
+	if err != nil {
+		return errors.Wrap(err, "failed reverse block lookup")
+	}
+
+	volName, err := common.LookupVolName(pathIn)
+	if err != nil {
+		return errors.Wrap(err, "failed volume name lookup")
+	}
+
+	logrus.Debugf("unlocking volume %s on device %s\n", volName, blockPath)
+	opts := []string{"-"}
+	err = sdHelper(volName, blockPath, opts)
+	if err != nil {
+		return errors.Wrap(err, "failed to run systemd-crypsetup")
+	}
+
+	return nil
+}
+
+func sdHelper(volume string, path string, opts []string) error {
+	if volume == "" {
+		return errors.New("empty input volume name")
+	}
+	if path == "" {
+		return errors.New("empty input path")
+	}
+
+	args := []string{"attach", volume, path}
+	args = append(args, opts...)
+	cmd := exec.Command(sdHelperBin, args...)
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		msg := errors.New(string(out))
+		return errors.Wrap(msg, err.Error())
+	}
 
 	return nil
 }
