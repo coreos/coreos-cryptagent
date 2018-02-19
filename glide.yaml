@@ -10,3 +10,7 @@ import:
   version: v16
   subpackages:
   - unit
+- package: github.com/coreos/ignition
+  version: v0.22.0
+  subpackages:
+  - config/types
