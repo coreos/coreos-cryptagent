@@ -1,12 +1,14 @@
 package: github.com/coreos/coreos-cryptagent
 import:
+- package: github.com/coreos/go-systemd
+  version: v16
+  subpackages:
+  - unit
+- package: github.com/fsnotify/fsnotify
+  version: v1.4.7
 - package: github.com/pkg/errors
   version: v0.8.0
 - package: github.com/sirupsen/logrus
   version: v1.0.3
 - package: github.com/spf13/cobra
   version: 16c014f1a19d865b765b420e74508f80eb831ada
-- package: github.com/coreos/go-systemd
-  version: v16
-  subpackages:
-  - unit
