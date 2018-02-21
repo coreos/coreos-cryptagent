@@ -162,7 +162,7 @@ func SendPassphrase(ctx context.Context, sock string, password string) error {
 		ch <- err
 	}
 	wirePass := "+" + password
-	errCh := make(chan error)
+	errCh := make(chan error, 1)
 	go send(errCh, wirePass)
 
 	select {

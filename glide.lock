@@ -1,5 +1,5 @@
-hash: 4fd7dce60ff7b1d2481ac6fb2d4c78dd0cc97c52a3bfb3a1632fb60470ceb504
-updated: 2018-02-12T09:09:15.813702833Z
+hash: ab1cb8a1ae35c7b7da6d87e805194736ae5e9b21868dd8d7cbdf7dad55f340c0
+updated: 2018-02-21T10:24:52.649610932Z
 imports:
 - name: github.com/coreos/go-semver
   version: 294930c1e79c64e7dbe360054274fdad492c8cf5
@@ -16,6 +16,8 @@ imports:
   subpackages:
   - config/types
   - config/validate/report
+- name: github.com/fsnotify/fsnotify
+  version: c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
 - name: github.com/inconshreveable/mousetrap
   version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
 - name: github.com/pkg/errors
