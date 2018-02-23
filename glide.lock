@@ -1,10 +1,12 @@
-hash: bd80c13796499176b3047d438704a3a7728ad5f582767f7b70f380ec930b9e7d
-updated: 2018-02-06T12:00:40.398100161Z
+hash: ab1cb8a1ae35c7b7da6d87e805194736ae5e9b21868dd8d7cbdf7dad55f340c0
+updated: 2018-02-21T10:24:52.649610932Z
 imports:
 - name: github.com/coreos/go-systemd
   version: 40e2722dffead74698ca12a750f64ef313ddce05
   subpackages:
   - unit
+- name: github.com/fsnotify/fsnotify
+  version: c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
 - name: github.com/inconshreveable/mousetrap
   version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
 - name: github.com/pkg/errors
@@ -14,9 +16,9 @@ imports:
 - name: github.com/spf13/cobra
   version: 16c014f1a19d865b765b420e74508f80eb831ada
 - name: github.com/spf13/pflag
-  version: 4c012f6dcd9546820e378d0bdda4d8fc772cdfea
+  version: e57e3eeb33f795204c1ca35f56c44f83227c6e66
 - name: golang.org/x/crypto
-  version: 1875d0a70c90e57f11972aefd42276df65e895b9
+  version: 432090b8f568c018896cd8a0fb0345872bbac6ce
   subpackages:
   - ssh/terminal
 - name: golang.org/x/sys
