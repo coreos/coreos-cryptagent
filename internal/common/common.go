@@ -97,11 +97,16 @@ func lookupVolName(devConfigDir string, pathIn string) (string, error) {
 	return "", errors.New("unable to decode volume name from configuration")
 }
 
-// lookupConfigDir translates a block device path into its base config directory entry.
+// LookupConfigDir translates a block device path into its base config directory entry.
 //
 // `path` must be an existing absolute path to a device. `devConfigDir` is the default
 // base config directory for coreos-cryptagent. The resulting string is the absolute
 // path to the device configuration directory.
+func LookupConfigDir(pathIn string) (string, error) {
+	// To ease testing, inject the base directory to a private function.
+	return lookupConfigDir(config.DevConfigDir, pathIn)
+}
+
 func lookupConfigDir(devConfigDir string, pathIn string) (string, error) {
 	if pathIn == "" {
 		return "", errors.New("empty device id")
